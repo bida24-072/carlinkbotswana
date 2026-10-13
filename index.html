@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarLink Botswana — Buy & Sell Cars in Botswana</title>
+    <meta name="description" content="CarLink Botswana — buy quality local and imported cars, or sell your car fast. Dealer-grade vehicles, trusted sourcing.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <i class="fas fa-bolt"></i> BOTSWANA'S TRUSTED CAR MARKETPLACE · BUY · SELL · SOURCE
+    </div>
+
+    <header>
+        <div class="container nav">
+            <a href="index.html" class="logo">
+                <div class="logo-mark"><i class="fas fa-car-side"></i></div>
+                Car<span>Link</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#cars" class="active">Browse Cars</a>
+                <a href="#sell">Sell Your Car</a>
+                <a href="#why">Why Us</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="nav-heart" onclick="showFavourites()">
+                    <i class="fas fa-heart"></i>
+                    <span class="nav-heart-count" id="wishlist-count" style="display:none;">0</span>
+                </div>
+                <a href="#sell" class="btn">Sell Your Car</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO SLIDESHOW -->
+        <section class="hero">
+            <div id="hero-slides"></div>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span class="dot"></span>
+                    Live Stock · Updated Daily
+                </div>
+                <h1>Your next car,<br><em>sorted.</em></h1>
+                <p>Buy quality local and imported vehicles. Sell yours fast. Sourced by CarLink — Botswana's trusted car marketplace.</p>
+                <div class="hero-actions">
+                    <a href="#cars" class="btn">
+                        <i class="fas fa-search"></i> Browse Cars
+                    </a>
+                    <a href="#sell" class="btn btn-outline">
+                        <i class="fas fa-tag"></i> Sell Your Car
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-dots" id="hero-dots"></div>
+
+            <div class="hero-stats">
+                <div>
+                    <div class="hero-stat-num">150+</div>
+                    <div class="hero-stat-label">Cars Sold</div>
+                </div>
+                <div>
+                    <div class="hero-stat-num">100%</div>
+                    <div class="hero-stat-label">Verified Stock</div>
+                </div>
+                <div>
+                    <div class="hero-stat-num">24hr</div>
+                    <div class="hero-stat-label">Response Time</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARS SECTION -->
+        <section id="cars">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Available Stock</span>
+                    <h2 class="section-title">Cars ready for <em>the road.</em></h2>
+                    <p class="section-sub">Every car is verified, inspected, and priced fairly. Use AI search to find exactly what you're looking for.</p>
+                </div>
+
+                <!-- SEARCH BAR -->
+                <div class="search-bar">
+                    <div class="search-field">
+                        <label>AI Search</label>
+                        <input type="text" id="search-input" placeholder="e.g. 'white Toyota bakkie 2020' or 'cheap automatic SUV'">
+                    </div>
+                    <div class="search-field">
+                        <label>Max Price</label>
+                        <select id="price-filter" onchange="applySearch()">
+                            <option value="">Any Price</option>
+                            <option value="100000">Under P100,000</option>
+                            <option value="200000">Under P200,000</option>
+                            <option value="300000">Under P300,000</option>
+                            <option value="400000">Under P400,000</option>
+                            <option value="500000">Under P500,000</option>
+                            <option value="1000000">Under P1,000,000</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label>Make</label>
+                        <select id="make-filter" onchange="applySearch()">
+                            <option value="">All Makes</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Volkswagen">Volkswagen</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Isuzu">Isuzu</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="Kia">Kia</option>
+                            <option value="Mercedes-Benz">Mercedes-Benz</option>
+                            <option value="BMW">BMW</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label>Sort By</label>
+                        <select id="sort-filter" onchange="applySearch()">
+                            <option value="newest">Newest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="mileage">Lowest Mileage</option>
+                            <option value="year">Newest Year</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="applySearch()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+
+                <div class="ai-search-hint">
+                    <i class="fas fa-wand-magic-sparkles"></i> AI-Powered Search — Describe what you want in plain English
+                </div>
+
+                <!-- CATEGORY TABS -->
+                <div class="category-tabs">
+                    <button class="cat-btn active" data-cat="all" onclick="filterCategory('all', this)">All Vehicles</button>
+                    <button class="cat-btn" data-cat="bakkie" onclick="filterCategory('bakkie', this)">Bakkies</button>
+                    <button class="cat-btn" data-cat="suv" onclick="filterCategory('suv', this)">SUVs</button>
+                    <button class="cat-btn" data-cat="sedan" onclick="filterCategory('sedan', this)">Sedans</button>
+                    <button class="cat-btn" data-cat="hatchback" onclick="filterCategory('hatchback', this)">Hatchbacks</button>
+                </div>
+
+                <!-- CARS GRID -->
+                <div class="cars-grid" id="cars-grid"></div>
+            </div>
+        </section>
+
+        <!-- SELL YOUR CAR -->
+        <section id="sell" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+            <div class="container">
+                <div class="sell-section">
+                    <div class="sell-grid">
+                        <div>
+                            <span class="section-label">Sell With Us</span>
+                            <h2 class="section-title" style="margin-bottom: 20px;">Sell your car<br><em>the easy way.</em></h2>
+                            <p style="color: var(--muted); line-height: 1.8; margin-bottom: 24px;">
+                                List your car on CarLink for free. We'll market it on TikTok, WhatsApp, and this website — and connect you with serious buyers.
+                            </p>
+                            <ul style="display:flex; flex-direction:column; gap:14px;">
+                                <li style="display:flex; gap:12px; align-items:flex-start;">
+                                    <i class="fas fa-circle-check" style="color: var(--green); margin-top:4px;"></i>
+                                    <span style="color: var(--muted); font-size: 0.92rem;">Free listing — no upfront cost</span>
+                                </li>
+                                <li style="display:flex; gap:12px; align-items:flex-start;">
+                                    <i class="fas fa-circle-check" style="color: var(--green); margin-top:4px;"></i>
+                                    <span style="color: var(--muted); font-size: 0.92rem;">We handle buyers, screening, and viewings</span>
+                                </li>
+                                <li style="display:flex; gap:12px; align-items:flex-start;">
+                                    <i class="fas fa-circle-check" style="color: var(--green); margin-top:4px;"></i>
+                                    <span style="color: var(--muted); font-size: 0.92rem;">Only 5% commission on sale</span>
+                                </li>
+                                <li style="display:flex; gap:12px; align-items:flex-start;">
+                                    <i class="fas fa-circle-check" style="color: var(--green); margin-top:4px;"></i>
+                                    <span style="color: var(--muted); font-size: 0.92rem;">Direct WhatsApp contact with serious buyers</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <form onsubmit="submitListing(event)">
+                            <h3 style="font-family: var(--display); font-size: 1.4rem; margin-bottom: 24px; letter-spacing:-0.02em;">List Your Car</h3>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Make *</label>
+                                    <input type="text" id="s-make" required placeholder="e.g. Toyota">
+                                </div>
+                                <div class="form-group">
+                                    <label>Model *</label>
+                                    <input type="text" id="s-model" required placeholder="e.g. Hilux">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Year *</label>
+                                    <input type="number" id="s-year" required min="1990" max="2026" placeholder="2020">
+                                </div>
+                                <div class="form-group">
+                                    <label>Price (Pula) *</label>
+                                    <input type="number" id="s-price" required min="1" placeholder="250000">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Mileage (km) *</label>
+                                    <input type="number" id="s-mileage" required min="0" placeholder="80000">
+                                </div>
+                                <div class="form-group">
+                                    <label>Body Type</label>
+                                    <select id="s-body">
+                                        <option value="Bakkie">Bakkie</option>
+                                        <option value="SUV">SUV</option>
+                                        <option value="Sedan">Sedan</option>
+                                        <option value="Hatchback">Hatchback</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Fuel</label>
+                                    <select id="s-fuel">
+                                        <option value="Petrol">Petrol</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Transmission</label>
+                                    <select id="s-transmission">
+                                        <option value="Automatic">Automatic</option>
+                                        <option value="Manual">Manual</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Colour</label>
+                                    <input type="text" id="s-color" placeholder="e.g. White">
+                                </div>
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <input type="text" id="s-location" placeholder="e.g. Gaborone">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Engine</label>
+                                    <input type="text" id="s-engine" placeholder="e.g. 2.8L">
+                                </div>
+                                <div class="form-group">
+                                    <label>Number of Owners</label>
+                                    <input type="number" id="s-owners" min="1" placeholder="1">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Main Photo URL</label>
+                                <input type="url" id="s-image" placeholder="https://... (paste a photo link)">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="s-desc" rows="3" placeholder="Service history, extras, condition..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn" style="width: 100%; justify-content: center;">
+                                <i class="fas fa-check"></i> Submit Listing
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY US -->
+        <section id="why">
+            <div class="container">
+                <div class="section-header center">
+                    <span class="section-label">Why CarLink</span>
+                    <h2 class="section-title">Buying cars, <em>done right.</em></h2>
+                </div>
+                <div class="why-grid">
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Verified Stock</h4>
+                        <p>Every car listed is inspected and verified before it hits the market. No surprises.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-search"></i></div>
+                        <h4>Sourcing Service</h4>
+                        <p>Can't find what you want? Tell us your spec and we'll source it for you.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-file-signature"></i></div>
+                        <h4>Paperwork Handled</h4>
+                        <p>We assist with change of ownership, licensing, and all the admin.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-handshake"></i></div>
+                        <h4>Trusted Deals</h4>
+                        <p>Hundreds of happy Batswana buyers and sellers. Rated 5 stars on TikTok.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <section>
+            <div class="cta-banner">
+                <h2>Can't find what you're looking for?</h2>
+                <p>Tell us your spec — Toyota Hilux, 2020+, under P400K, automatic — and we'll source it for you.</p>
+                <a href="https://wa.me/26771234567?text=Hi%20CarLink%2C%20I'm%20looking%20for%20a%20specific%20car" target="_blank" rel="noopener" class="btn">
+                    <i class="fab fa-whatsapp"></i> Request a Car
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Car<span>Link</span></h3>
+                    <p>Botswana's trusted car marketplace. Buy quality vehicles, sell yours fast, and source cars you actually want.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#cars">Browse Cars</a></li>
+                        <li><a href="#sell">Sell Your Car</a></li>
+                        <li><a href="#why">Why Us</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#cars">Bakkies</a></li>
+                        <li><a href="#cars">SUVs</a></li>
+                        <li><a href="#cars">Sedans</a></li>
+                        <li><a href="#cars">Hatchbacks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Gaborone, Botswana</li>
+                        <li>+267 71 234 567</li>
+                        <li>hello@carlink.co.bw</li>
+                        <li>Mon–Sat · 8AM–7PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 CarLink Botswana</span>
+                <span>Built in Botswana 🇧🇼</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
